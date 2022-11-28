@@ -23,4 +23,12 @@ public:
 		}
 		ofDrawRectangle(myCoordinate.x, myCoordinate.y, mySize, mySize);
 	}
+
+	void changeState() {
+		if (myState == State::alive) {
+			myState = State::dead;
+		} else if (myState == State::dead) {
+			myState = State::alive;
+		}
+	}
 };

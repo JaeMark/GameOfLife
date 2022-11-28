@@ -20,6 +20,25 @@ public:
 				cell.draw();
 			}
 		}
+		drawGrid();
+		
+	}
+
+	void changeStateOfCellAt(const Coordinate coord) {
+		for (int n{ 0 }; n < myRow; n++) {
+			for (int m{ 0 }; m < myColumn; m++) {
+				const double lowerYBound = myGridSize * n;
+				const double lowerXBound = myGridSize * m;
+				const double upperYBound = lowerYBound + myGridSize;
+				const double upperXBound = lowerXBound + myGridSize;
+
+				// update grid pixel
+				if (coord.x > lowerXBound && coord.x < upperXBound &&
+					coord.y > lowerYBound && coord.y < upperYBound) {
+					myCells[n][m].changeState();
+				}
+			}
+		}
 	}
 
 private:
@@ -34,13 +53,20 @@ private:
 			for (int m{ 0 }; m < myColumn; m++) {
 				cellPosX = myGridSize * m + myGridSize / 2;
 				Coordinate cellCoord{ Coordinate{ cellPosX, cellPosY } };
-				if(m % 2 == 0) {
-					cells.emplace_back(Cell{ cellCoord, myGridSize, Cell::State::alive });
-				} else {
-					cells.emplace_back(Cell{ cellCoord, myGridSize, cellState});
-				}
+				cells.emplace_back(Cell{ cellCoord, myGridSize, cellState});
 			}
 			myCells.push_back(cells);
+		}
+	}
+
+	void drawGrid() {
+		// draw grid
+		ofSetColor(100);
+		for (int n{ 0 }; n < myRow; n++) {
+			ofDrawLine(0, myGridSize * n, ofGetWidth(), myGridSize * n);
+		}
+		for (int m{ 0 }; m < myColumn; m++) {
+			ofDrawLine(myGridSize * m, 0, myGridSize * m, ofGetHeight());
 		}
 	}
 };
