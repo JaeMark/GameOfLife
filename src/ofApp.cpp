@@ -8,7 +8,11 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+	if(gameState == GameState::playing) {
+		ofSetFrameRate(playingFrameRate);
+	} else {
+		ofSetFrameRate(defaultFrameRate);
+	}
 }
 
 //--------------------------------------------------------------
@@ -18,7 +22,9 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+	if (key == 's') {
+		gameState = GameState::playing;
+	}
 }
 
 //--------------------------------------------------------------
@@ -38,7 +44,9 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-	cellGrid.changeStateOfCellAt(Coordinate{ static_cast<double>(x), static_cast<double>(y) });
+	if(gameState == GameState::initialization) {
+		cellGrid.changeStateOfCellAt(Coordinate{ static_cast<double>(x), static_cast<double>(y) });
+	}
 }
 
 //--------------------------------------------------------------

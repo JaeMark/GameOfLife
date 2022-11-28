@@ -10,4 +10,5 @@ private:
 public:
 	GameMode(const CellGrid& grid)
 		: myCellGrid{ grid } {}
+
 };

@@ -59,7 +59,7 @@ private:
 		}
 	}
 
-	void drawGrid() {
+	void drawGrid() const {
 		// draw grid
 		ofSetColor(100);
 		for (int n{ 0 }; n < myRow; n++) {
