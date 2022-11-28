@@ -24,6 +24,10 @@ public:
 		
 	}
 
+	void update() {
+		
+	}
+
 	void changeStateOfCellAt(const Coordinate coord) {
 		for (int n{ 0 }; n < myRow; n++) {
 			for (int m{ 0 }; m < myColumn; m++) {
@@ -32,7 +36,6 @@ public:
 				const double upperYBound = lowerYBound + myGridSize;
 				const double upperXBound = lowerXBound + myGridSize;
 
-				// update grid pixel
 				if (coord.x > lowerXBound && coord.x < upperXBound &&
 					coord.y > lowerYBound && coord.y < upperYBound) {
 					myCells[n][m].changeState();
@@ -43,15 +46,12 @@ public:
 
 private:
 	void intializeGrid() {
-		// create cell grid
-		double cellPosX = 0;
-		double cellPosY = 0;
 		const Cell::State cellState{ Cell::State::dead }; // initialize all cells as dead
 		for (int n{ 0 }; n < myRow; n++) {
 			std::vector<Cell> cells; // row of cells
-			cellPosY = myGridSize * n + myGridSize / 2;
+			const double cellPosY = myGridSize * n + myGridSize / 2;
 			for (int m{ 0 }; m < myColumn; m++) {
-				cellPosX = myGridSize * m + myGridSize / 2;
+				const double cellPosX = myGridSize * m + myGridSize / 2;
 				Coordinate cellCoord{ Coordinate{ cellPosX, cellPosY } };
 				cells.emplace_back(Cell{ cellCoord, myGridSize, cellState});
 			}
@@ -69,4 +69,17 @@ private:
 			ofDrawLine(myGridSize * m, 0, myGridSize * m, ofGetHeight());
 		}
 	}
+
+	void handleRulesOfLife(Coordinate coord) {
+		// Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+
+		// Any live cell with two or three live neighbours lives on to the next generation.
+
+		// Any live cell with more than three live neighbours dies, as if by overpopulation.
+
+		// Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction 
+
+	}
+
+	void handleEdgeCase() {}
 };
