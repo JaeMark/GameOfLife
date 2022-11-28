@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Cell.h"
+#include "CellGrid.h"
 #include "ofMain.h"
 
 class ofApp : public ofBaseApp{
@@ -23,5 +24,8 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 private:
-	
+	const int gridRow{ 25 };
+	const int gridColumn{ 25 };
+	const int gridSize{ 50 };
+	CellGrid cellGrid{gridRow, gridColumn, gridSize};
 };
