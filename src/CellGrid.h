@@ -30,14 +30,14 @@ private:
 		const Cell::State cellState{ Cell::State::dead }; // initialize all cells as dead
 		for (int n{ 0 }; n < myRow; n++) {
 			std::vector<Cell> cells; // row of cells
-			cellPosY = myGridSize * n;
+			cellPosY = myGridSize * n + myGridSize / 2;
 			for (int m{ 0 }; m < myColumn; m++) {
-				cellPosX = myGridSize * m;
+				cellPosX = myGridSize * m + myGridSize / 2;
 				Coordinate cellCoord{ Coordinate{ cellPosX, cellPosY } };
 				if(m % 2 == 0) {
-					cells.emplace_back(Cell{ cellCoord, Cell::State::alive });
+					cells.emplace_back(Cell{ cellCoord, myGridSize, Cell::State::alive });
 				} else {
-					cells.emplace_back(Cell{ cellCoord, cellState });
+					cells.emplace_back(Cell{ cellCoord, myGridSize, cellState});
 				}
 			}
 			myCells.push_back(cells);

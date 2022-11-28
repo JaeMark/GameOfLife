@@ -2,8 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	ofSetWindowShape(windowSize, windowSize);
 	ofSetRectMode(OF_RECTMODE_CENTER);
-	
 }
 
 //--------------------------------------------------------------

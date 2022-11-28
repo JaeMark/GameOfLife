@@ -24,8 +24,10 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 private:
+	const int windowSize{ 1000 };
 	const int gridRow{ 25 };
 	const int gridColumn{ 25 };
-	const int gridSize{ 50 };
+	const int gridSize{ windowSize/gridRow };
+
 	CellGrid cellGrid{gridRow, gridColumn, gridSize};
 };
