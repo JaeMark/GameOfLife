@@ -26,6 +26,8 @@ public:
 	}
 
 	void update() {
+		handleRulesOfLife();
+		// copy next generation cell grid to the current cell grid
 		myCells.clear();
 		for (auto& cells : myNextGenCells) {
 			myCells.push_back(cells);
@@ -76,39 +78,38 @@ private:
 	}
 
 	void handleRulesOfLife() {
-		for (int n{ 1 }; n < myRow - 1; n++) {
-			for (int m{ 1 }; m < myColumn - 1; m++) {
+		for (int n{ 0 }; n < myRow; n++) {
+			for (int m{ 0 }; m < myColumn; m++) {
 				const int neighborCount{ getNeighborCount(n, m) };
 				const bool isCellAlive{ myCells[n][m].isAlive() };
-				// Any live cell with fewer than two live neighbours dies, as if by underpopulation.
-
-				// Any live cell with two or three live neighbours lives on to the next generation.
-
-				// Any live cell with more than three live neighbours dies, as if by overpopulation.
-
-				// Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction
+				std::cout << n << "," << m << ": " << neighborCount << "\n";
 				if (isCellAlive && (neighborCount < 2 || neighborCount > 3)) {
+					// any live cell with fewer than two live neighbours dies, as if by underpopulation
+					// any live cell with more than three live neighbours dies, as if by overpopulation
 					myNextGenCells[n][m].kill();
 				}
 				else if (isCellAlive && (neighborCount == 2 || neighborCount == 3)) {
+					// any live cell with two or three live neighbours lives on to the next generation
 					myNextGenCells[n][m].giveLife();
 				}
 				else if (!isCellAlive && neighborCount == 3) {
+					// any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction
 					myNextGenCells[n][m].giveLife();
 				}
 			}
 		}
 	}
 
-	void handleRulesOfLifeEdgeCase() {
-
-	}
-
 	int getNeighborCount(int row, int column) const {
 		int neighborCount{ 0 };
-		for (int n{ row - 1 }; n < 3; n++) {
-			for (int m{ column - 1 }; m < 3; m++) {
-				++neighborCount;
+		for (int n{ row - 1 }; n <= row + 1; n++) {
+			for (int m{ column - 1 }; m <= column + 1; m++) {
+				// skip cells outside of the grid and itself
+				if(n > -1 && n < myRow && m > -1 && m < myColumn) {
+					if (!(n == row && m == column) && myCells[n][m].isAlive()) {
+						++neighborCount;
+					}
+				}
 			}
 		}
 		return neighborCount;

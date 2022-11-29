@@ -10,7 +10,11 @@ void ofApp::setup(){
 void ofApp::update(){
 	if(gameState == GameState::playing) {
 		ofSetFrameRate(playingFrameRate);
-		cellGrid.update();
+		if(!isUpdated) {
+			cellGrid.update();
+			isUpdated = true;
+		}
+		
 	} else {
 		ofSetFrameRate(defaultFrameRate);
 	}
