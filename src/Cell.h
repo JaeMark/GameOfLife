@@ -31,4 +31,8 @@ public:
 			myState = State::alive;
 		}
 	}
+
+	bool isAlive() const {
+		return myState == State::alive;
+	}
 };

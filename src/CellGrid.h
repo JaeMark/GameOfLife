@@ -70,7 +70,7 @@ private:
 		}
 	}
 
-	void handleRulesOfLife(Coordinate coord) {
+	void handleRulesOfLife() {
 		// Any live cell with fewer than two live neighbours dies, as if by underpopulation.
 
 		// Any live cell with two or three live neighbours lives on to the next generation.
@@ -79,6 +79,18 @@ private:
 
 		// Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction 
 
+	}
+
+	int getNeighborCount(int row, int column) const {
+		int neighborCount{ 0 };
+		for(int n = row - 1; n < 3; n++) {
+			for(int m = column - 1; m < 3; m++) {
+				if(myCells[n][m].isAlive()) {
+					++neighborCount;
+				}
+			}
+		}
+		return neighborCount;
 	}
 
 	void handleEdgeCase() {}
