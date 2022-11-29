@@ -31,4 +31,16 @@ public:
 			myState = State::alive;
 		}
 	}
+
+	void giveLife() {
+		myState = State::alive;
+	}
+
+	void kill() {
+		myState = State::dead;
+	}
+
+	bool isAlive() const {
+		return myState == State::alive;
+	}
 };

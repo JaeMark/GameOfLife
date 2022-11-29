@@ -8,6 +8,7 @@ class CellGrid {
 	const int myColumn;
 	const int myGridSize;
 	std::vector<std::vector<Cell>> myCells;
+	std::vector<std::vector<Cell>> myNextGenCells;
 public:
 	CellGrid(const int& row, const int& column, const int& gridSize)
 		: myRow{ row }, myColumn{ column }, myGridSize{ gridSize } {
@@ -25,7 +26,10 @@ public:
 	}
 
 	void update() {
-		
+		myCells.clear();
+		for (auto& cells : myNextGenCells) {
+			myCells.push_back(cells);
+		}
 	}
 
 	void changeStateOfCellAt(const Coordinate coord) {
@@ -56,6 +60,7 @@ private:
 				cells.emplace_back(Cell{ cellCoord, myGridSize, cellState});
 			}
 			myCells.push_back(cells);
+			myNextGenCells.push_back(cells);
 		}
 	}
 
@@ -70,16 +75,42 @@ private:
 		}
 	}
 
-	void handleRulesOfLife(Coordinate coord) {
-		// Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+	void handleRulesOfLife() {
+		for (int n{ 1 }; n < myRow - 1; n++) {
+			for (int m{ 1 }; m < myColumn - 1; m++) {
+				const int neighborCount{ getNeighborCount(n, m) };
+				const bool isCellAlive{ myCells[n][m].isAlive() };
+				// Any live cell with fewer than two live neighbours dies, as if by underpopulation.
 
-		// Any live cell with two or three live neighbours lives on to the next generation.
+				// Any live cell with two or three live neighbours lives on to the next generation.
 
-		// Any live cell with more than three live neighbours dies, as if by overpopulation.
+				// Any live cell with more than three live neighbours dies, as if by overpopulation.
 
-		// Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction 
+				// Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction
+				if (isCellAlive && (neighborCount < 2 || neighborCount > 3)) {
+					myNextGenCells[n][m].kill();
+				}
+				else if (isCellAlive && (neighborCount == 2 || neighborCount == 3)) {
+					myNextGenCells[n][m].giveLife();
+				}
+				else if (!isCellAlive && neighborCount == 3) {
+					myNextGenCells[n][m].giveLife();
+				}
+			}
+		}
+	}
+
+	void handleRulesOfLifeEdgeCase() {
 
 	}
 
-	void handleEdgeCase() {}
+	int getNeighborCount(int row, int column) const {
+		int neighborCount{ 0 };
+		for (int n{ row - 1 }; n < 3; n++) {
+			for (int m{ column - 1 }; m < 3; m++) {
+				++neighborCount;
+			}
+		}
+		return neighborCount;
+	}
 };
