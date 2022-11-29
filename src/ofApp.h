@@ -25,8 +25,8 @@ class ofApp : public ofBaseApp{
 
 private:
 	const int windowSize{ 1000 };
-	const int gridRow{ 5 };
-	const int gridColumn{ 5 };
+	const int gridRow{ 25 };
+	const int gridColumn{ 25 };
 	const int gridSize{ windowSize/gridRow };
 	const int defaultFrameRate{ 60 };
 	const int playingFrameRate{ 1 };

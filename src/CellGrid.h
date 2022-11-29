@@ -82,7 +82,6 @@ private:
 			for (int m{ 0 }; m < myColumn; m++) {
 				const int neighborCount{ getNeighborCount(n, m) };
 				const bool isCellAlive{ myCells[n][m].isAlive() };
-				std::cout << n << "," << m << ": " << neighborCount << "\n";
 				if (isCellAlive && (neighborCount < 2 || neighborCount > 3)) {
 					// any live cell with fewer than two live neighbours dies, as if by underpopulation
 					// any live cell with more than three live neighbours dies, as if by overpopulation
