@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	ofSetWindowShape(windowSize, windowSize);
+	ofSetWindowShape(gameWindowSize + GUIOffset, gameWindowSize);
 	ofSetRectMode(OF_RECTMODE_CENTER);
 }
 

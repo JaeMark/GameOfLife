@@ -24,13 +24,14 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 private:
-	const int windowSize{ 1000 };
+	const int gameWindowSize{ 800 };
+	const int GUIOffset{ 200 };
 	const int gridRow{ 25 };
 	const int gridColumn{ 25 };
-	const int gridSize{ windowSize/gridRow };
+	const int cellSize{ gameWindowSize/gridRow };
 	const int defaultFrameRate{ 60 };
 	const int playingFrameRate{ 1 };
-	CellGrid cellGrid{gridRow, gridColumn, gridSize};
+	CellGrid cellGrid{gridRow, gridColumn, cellSize, gameWindowSize};
 
 	enum class GameState{initialization, playing};
 	GameState gameState{ GameState::initialization };

@@ -6,12 +6,13 @@
 class CellGrid {
 	const int myRow;
 	const int myColumn;
+	const int myCellSize;
 	const int myGridSize;
 	std::vector<std::vector<Cell>> myCells;
 	std::vector<std::vector<Cell>> myNextGenCells;
 public:
-	CellGrid(const int& row, const int& column, const int& gridSize)
-		: myRow{ row }, myColumn{ column }, myGridSize{ gridSize } {
+	CellGrid(const int& row, const int& column, const int& cellSize, const int& gridSize)
+		: myRow{ row }, myColumn{ column }, myCellSize{ cellSize }, myGridSize{ gridSize } {
 		intializeGrid();
 	}
 
@@ -37,10 +38,10 @@ public:
 	void changeStateOfCellAt(const Coordinate coord) {
 		for (int n{ 0 }; n < myRow; n++) {
 			for (int m{ 0 }; m < myColumn; m++) {
-				const double lowerYBound = myGridSize * n;
-				const double lowerXBound = myGridSize * m;
-				const double upperYBound = lowerYBound + myGridSize;
-				const double upperXBound = lowerXBound + myGridSize;
+				const double lowerYBound = myCellSize * n;
+				const double lowerXBound = myCellSize * m;
+				const double upperYBound = lowerYBound + myCellSize;
+				const double upperXBound = lowerXBound + myCellSize;
 
 				if (coord.x > lowerXBound && coord.x < upperXBound &&
 					coord.y > lowerYBound && coord.y < upperYBound) {
@@ -55,11 +56,11 @@ private:
 		const Cell::State cellState{ Cell::State::dead }; // initialize all cells as dead
 		for (int n{ 0 }; n < myRow; n++) {
 			std::vector<Cell> cells; // row of cells
-			const double cellPosY = myGridSize * n + myGridSize / 2;
+			const double cellPosY = myCellSize * n + myCellSize / 2;
 			for (int m{ 0 }; m < myColumn; m++) {
-				const double cellPosX = myGridSize * m + myGridSize / 2;
+				const double cellPosX = myCellSize * m + myCellSize / 2;
 				Coordinate cellCoord{ Coordinate{ cellPosX, cellPosY } };
-				cells.emplace_back(Cell{ cellCoord, myGridSize, cellState});
+				cells.emplace_back(Cell{ cellCoord, myCellSize, cellState});
 			}
 			myCells.push_back(cells);
 			myNextGenCells.push_back(cells);
@@ -70,10 +71,10 @@ private:
 		// draw grid
 		ofSetColor(100);
 		for (int n{ 0 }; n < myRow; n++) {
-			ofDrawLine(0, myGridSize * n, ofGetWidth(), myGridSize * n);
+			ofDrawLine(0, myCellSize * n, myGridSize, myCellSize * n);
 		}
 		for (int m{ 0 }; m < myColumn; m++) {
-			ofDrawLine(myGridSize * m, 0, myGridSize * m, ofGetHeight());
+			ofDrawLine(myCellSize * m, 0, myCellSize * m, myGridSize);
 		}
 	}
 
