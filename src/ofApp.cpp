@@ -4,6 +4,13 @@
 void ofApp::setup(){
 	ofSetWindowShape(gameWindowSize + GUIOffset, gameWindowSize);
 	ofSetRectMode(OF_RECTMODE_CENTER);
+
+
+	ofTrueTypeFont::setGlobalDpi(72);
+	// setup generation font
+	generation.load("Fonts/LifeIsOkay.ttf", 20, true, true);
+	generation.setLineHeight(lineHeight);
+	generation.setLetterSpacing(letterSpacing);
 }
 
 //--------------------------------------------------------------
@@ -17,6 +24,7 @@ void ofApp::update(){
 		}
 		*/
 		cellGrid.update();
+		++currentGeneration;
 	} else {
 		ofSetFrameRate(defaultFrameRate);
 	}
@@ -24,7 +32,13 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	// draw grid
 	cellGrid.draw();
+
+	// display current generation
+	ofSetColor(225);
+	generation.drawString("Generation: " + std::to_string(currentGeneration), gameWindowSize + 10, ofGetHeight() - 10);
+	std::cout << std::to_string(currentGeneration) << "\n";
 }
 
 //--------------------------------------------------------------

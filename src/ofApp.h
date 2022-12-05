@@ -33,8 +33,14 @@ private:
 	const int playingFrameRate{ 1 };
 	CellGrid cellGrid{gridRow, gridColumn, cellSize, gameWindowSize};
 
+	ofTrueTypeFont generation;
+	const float lineHeight{ 34.0 };
+	const float letterSpacing{ 1.035 };
+
 	enum class GameState{initialization, playing};
 	GameState gameState{ GameState::initialization };
 
 	bool isUpdated = false;
+
+	int currentGeneration{ 0 };
 };
