@@ -23,6 +23,7 @@ void ofApp::update(){
 		ofSetFrameRate(defaultFrameRate);
 		cellGrid.reset();
 		currentGeneration = 0; // reset generation number
+		gameState = GameState::initialization;
 	} else if (gameState == GameState::initialization) {
 		ofSetFrameRate(defaultFrameRate);
 	}
