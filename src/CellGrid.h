@@ -54,6 +54,17 @@ public:
 		intializeGrid();
 	}
 
+	void seed(const float probability) {
+		for (auto& cells : myCells) {
+			for (auto& cell : cells) {
+				const float randomNum = ofRandom(0, 1);
+				if (randomNum < probability) {
+					cell.giveLife();
+				}
+			}
+		}
+	}
+
 	void changeStateOfCellAt(const Coordinate coord) {
 		for (int n{ 0 }; n < myRow; n++) {
 			for (int m{ 0 }; m < myColumn; m++) {
