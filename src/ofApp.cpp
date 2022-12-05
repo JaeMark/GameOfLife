@@ -47,7 +47,7 @@ void ofApp::nextGenButtonPressed() {
 }
 
 void ofApp::seedButtonPressed() {
-
+	if(gameState ==GameState::setup) cellGrid.seed(aliveProbability);
 }
 
 void ofApp::restartButtonPressed() {
