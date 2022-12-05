@@ -15,17 +15,15 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	if(gameState == GameState::playing) {
+	if (gameState == GameState::playing) {
 		ofSetFrameRate(playingFrameRate);
-		/*
-		if(!isUpdated) {
-			cellGrid.update();
-			isUpdated = true;
-		}
-		*/
 		cellGrid.update();
 		++currentGeneration;
-	} else {
+	} else if (gameState == GameState::restart) {
+		ofSetFrameRate(defaultFrameRate);
+		cellGrid.reset();
+		currentGeneration = 0; // reset generation number
+	} else if (gameState == GameState::initialization) {
 		ofSetFrameRate(defaultFrameRate);
 	}
 }
@@ -45,6 +43,9 @@ void ofApp::draw(){
 void ofApp::keyPressed(int key){
 	if (key == 's') {
 		gameState = GameState::playing;
+	}
+	if (key == 'r') {
+		gameState = GameState::restart;
 	}
 }
 

@@ -37,7 +37,7 @@ private:
 	const float lineHeight{ 34.0 };
 	const float letterSpacing{ 1.035 };
 
-	enum class GameState{initialization, playing};
+	enum class GameState{initialization, playing, restart};
 	GameState gameState{ GameState::initialization };
 
 	bool isUpdated = false;
