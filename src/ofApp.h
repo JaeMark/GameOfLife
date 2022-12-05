@@ -32,8 +32,7 @@ private:
 	const int gridRow{ 25 };
 	const int gridColumn{ 25 };
 	const int cellSize{ gameWindowSize/gridRow };
-	const int defaultFrameRate{ 60 };
-	const int playingFrameRate{ 1 };
+	const int frameRate{ 60 };
 	CellGrid cellGrid{gridRow, gridColumn, cellSize, gameWindowSize};
 
 	ofTrueTypeFont generation;
