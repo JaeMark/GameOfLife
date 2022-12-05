@@ -15,17 +15,19 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+	ofSetFrameRate(defaultFrameRate);
 	if (gameState == GameState::play) {
 		ofSetFrameRate(playingFrameRate);
 		cellGrid.update();
 		++currentGeneration;
+	} else if (gameState == GameState::pause) {
+		// do nothing
 	} else if (gameState == GameState::restart) {
-		ofSetFrameRate(defaultFrameRate);
 		cellGrid.reset();
 		currentGeneration = 0; // reset generation number
 		gameState = GameState::setup;
 	} else if (gameState == GameState::setup) {
-		ofSetFrameRate(defaultFrameRate);
+		// do nothing
 	}
 }
 
