@@ -30,12 +30,12 @@ class ofApp : public ofBaseApp{
 private:
 	const int gameWindowSize{ 800 };
 	const int GUIOffset{ 200 };
-	const int gridRow{ 25 };
-	const int gridColumn{ 25 };
-	const int cellWidth{ gameWindowSize/gridColumn };
-	const int cellHeight{ gameWindowSize / gridRow };
+	const int defaultGridRow{ 25 };
+	const int defaultGridColumn{ 25 };
+	const int initialCellWidth{ gameWindowSize/ defaultGridColumn };
+	const int initialCellHeight{ gameWindowSize / defaultGridRow };
 	const int frameRate{ 60 };
-	CellGrid cellGrid{gridRow, gridColumn, cellWidth, cellHeight, gameWindowSize};
+	CellGrid cellGrid{ defaultGridRow, defaultGridColumn, initialCellWidth, initialCellHeight, gameWindowSize};
 
 	ofTrueTypeFont generation;
 	const float lineHeight{ 34.0 };
@@ -52,4 +52,6 @@ private:
 	ofxButton playButton;
 	ofxButton restartButton;
 	ofxIntSlider tickRate;
+	ofxIntSlider gridRow;
+	ofxIntSlider gridColumn;
 };
