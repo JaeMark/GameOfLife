@@ -25,6 +25,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 		void playButtonPressed();
+		void nextGenButtonPressed();
 		void restartButtonPressed();
 		void rowSliderMoved(int& row);
 		void columnSliderMoved(int& column);
@@ -48,8 +49,8 @@ private:
 
 	ofxPanel gui;
 	ofxButton playButton;
-	ofxButton restartButton;
 	ofxButton nextGenButton;
+	ofxButton restartButton;
 	ofxIntSlider tickRate;
 	ofxIntSlider gridRow;
 	ofxIntSlider gridColumn;

@@ -14,6 +14,7 @@ void ofApp::setup(){
 
 	// setup listeners
 	playButton.addListener(this, &ofApp::playButtonPressed);
+	nextGenButton.addListener(this, &ofApp::nextGenButtonPressed);
 	restartButton.addListener(this, &ofApp::restartButtonPressed);
 	gridRow.addListener(this, &ofApp::rowSliderMoved);
 	gridColumn.addListener(this, &ofApp::columnSliderMoved);
@@ -21,8 +22,8 @@ void ofApp::setup(){
 	// setup GUI
 	gui.setup("Game of Life", ofxPanelDefaultFilename, gameWindowSize, 0);
 	gui.add(playButton.setup("Play"));
-	gui.add(restartButton.setup("Restart"));
 	gui.add(nextGenButton.setup("Next Generation"));
+	gui.add(restartButton.setup("Restart"));
 	gui.add(tickRate.setup("Tick Rate", 2, 1, 4));
 	gui.add(gridRow.setup("Grid Row", defaultGridRow, 3, 50));
 	gui.add(gridColumn.setup("Grid Column", defaultGridColumn, 3, 50));
@@ -36,6 +37,11 @@ void ofApp::playButtonPressed() {
 		gameState = GameState::play;
 		playButton.setName("Pause");
 	}
+}
+
+void ofApp::nextGenButtonPressed() {
+	cellGrid.update();
+	++currentGeneration;
 }
 
 void ofApp::restartButtonPressed() {
