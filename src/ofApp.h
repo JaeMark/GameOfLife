@@ -50,4 +50,5 @@ private:
 	ofxPanel gui;
 	ofxButton playButton;
 	ofxButton restartButton;
+	ofxIntSlider tickRate;
 };
