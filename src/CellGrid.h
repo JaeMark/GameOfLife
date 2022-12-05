@@ -38,12 +38,12 @@ public:
 		}
 	}
 
-	void updateCellRow(const int row) {
+	void updateGridRow(const int row) {
 		myRow = row;
 		reset();
 	}
 
-	void updateCellColumn(const int column) {
+	void updateGridColumn(const int column) {
 		myColumn = column;
 		reset();
 	}

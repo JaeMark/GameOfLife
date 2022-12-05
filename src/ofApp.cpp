@@ -15,6 +15,8 @@ void ofApp::setup(){
 	// setup listeners
 	playButton.addListener(this, &ofApp::playButtonPressed);
 	restartButton.addListener(this, &ofApp::restartButtonPressed);
+	gridRow.addListener(this, &ofApp::rowSliderMoved);
+	gridColumn.addListener(this, &ofApp::columnSliderMoved);
 
 	// setup GUI
 	gui.setup("Game of Life", ofxPanelDefaultFilename, gameWindowSize, 0);
@@ -40,6 +42,14 @@ void ofApp::restartButtonPressed() {
 	playButton.setName("Play"); // reset play button name
 }
 
+void ofApp::rowSliderMoved(int& row) {
+	isRowSliderMoved = true;
+}
+
+void ofApp::columnSliderMoved(int& column) {
+	isColumnSliderMoved = true;
+}
+
 //--------------------------------------------------------------
 void ofApp::update(){
 	ofSetFrameRate(frameRate);
@@ -54,6 +64,14 @@ void ofApp::update(){
 		gameState = GameState::setup;
 	} else if (gameState == GameState::setup) {
 		// do nothing
+		if(isRowSliderMoved) {
+			cellGrid.updateGridRow(gridRow);
+			isRowSliderMoved = false;
+		}
+		if(isColumnSliderMoved) {
+			cellGrid.updateGridColumn(gridColumn);
+			isColumnSliderMoved = false;
+		}
 	}
 }
 

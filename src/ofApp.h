@@ -26,6 +26,8 @@ class ofApp : public ofBaseApp{
 
 		void playButtonPressed();
 		void restartButtonPressed();
+		void rowSliderMoved(int& row);
+		void columnSliderMoved(int& column);
 
 private:
 	const int gameWindowSize{ 800 };
@@ -52,4 +54,7 @@ private:
 	ofxIntSlider tickRate;
 	ofxIntSlider gridRow;
 	ofxIntSlider gridColumn;
+
+	bool isRowSliderMoved = false;
+	bool isColumnSliderMoved = false;
 };
