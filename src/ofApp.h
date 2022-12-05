@@ -25,6 +25,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 		void playButtonPressed();
+		void restartButtonPressed();
 
 private:
 	const int gameWindowSize{ 800 };
@@ -48,4 +49,5 @@ private:
 
 	ofxPanel gui;
 	ofxButton playButton;
+	ofxButton restartButton;
 };

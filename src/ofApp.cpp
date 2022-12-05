@@ -14,10 +14,12 @@ void ofApp::setup(){
 
 	// setup listeners
 	playButton.addListener(this, &ofApp::playButtonPressed);
+	restartButton.addListener(this, &ofApp::restartButtonPressed);
 
 	// setup GUI
 	gui.setup("Game of Life", ofxPanelDefaultFilename, gameWindowSize, 0);
 	gui.add(playButton.setup("Play"));
+	gui.add(restartButton.setup("Restart"));
 }
 
 void ofApp::playButtonPressed() {
@@ -28,7 +30,11 @@ void ofApp::playButtonPressed() {
 		gameState = GameState::play;
 		playButton.setName("Pause");
 	}
+}
 
+void ofApp::restartButtonPressed() {
+	gameState = GameState::restart;
+	playButton.setName("Play"); // reset play button name
 }
 
 //--------------------------------------------------------------
