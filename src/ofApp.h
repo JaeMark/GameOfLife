@@ -32,9 +32,10 @@ private:
 	const int GUIOffset{ 200 };
 	const int gridRow{ 25 };
 	const int gridColumn{ 25 };
-	const int cellSize{ gameWindowSize/gridRow };
+	const int cellWidth{ gameWindowSize/gridColumn };
+	const int cellHeight{ gameWindowSize / gridRow };
 	const int frameRate{ 60 };
-	CellGrid cellGrid{gridRow, gridColumn, cellSize, gameWindowSize};
+	CellGrid cellGrid{gridRow, gridColumn, cellWidth, cellHeight, gameWindowSize};
 
 	ofTrueTypeFont generation;
 	const float lineHeight{ 34.0 };
