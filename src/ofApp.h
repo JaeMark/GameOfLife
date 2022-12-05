@@ -32,10 +32,8 @@ private:
 	const int GUIOffset{ 200 };
 	const int defaultGridRow{ 25 };
 	const int defaultGridColumn{ 25 };
-	const int initialCellWidth{ gameWindowSize/ defaultGridColumn };
-	const int initialCellHeight{ gameWindowSize / defaultGridRow };
 	const int frameRate{ 60 };
-	CellGrid cellGrid{ defaultGridRow, defaultGridColumn, initialCellWidth, initialCellHeight, gameWindowSize};
+	CellGrid cellGrid{ defaultGridRow, defaultGridColumn, gameWindowSize};
 
 	ofTrueTypeFont generation;
 	const float lineHeight{ 34.0 };

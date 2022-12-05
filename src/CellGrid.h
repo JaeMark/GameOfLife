@@ -4,16 +4,18 @@
 #include "ofAppRunner.h"
 
 class CellGrid {
-	const int myRow;
-	const int myColumn;
-	int myCellWidth;
-	int myCellHeight;
+	int myRow;
+	int myColumn;
 	int myGridSize;
+	int myCellWidth{ 0 };
+	int myCellHeight{ 0 };
 	std::vector<std::vector<Cell>> myCells;
 	std::vector<std::vector<Cell>> myNextGenCells;
 public:
-	CellGrid(const int& row, const int& column, const int& cellWidth, const int& cellHeight, const int& gridSize)
-		: myRow{ row }, myColumn{ column }, myCellWidth{ cellWidth }, myCellHeight{ cellHeight }, myGridSize{ gridSize } {
+	CellGrid(const int& row, const int& column, const int& gridSize)
+		: myRow{ row }, myColumn{ column }, myGridSize{ gridSize } {
+		myCellWidth = myGridSize / myColumn;
+		myCellHeight = myGridSize / myRow;
 		intializeGrid();
 	}
 
@@ -34,6 +36,16 @@ public:
 		for (auto& cells : myNextGenCells) {
 			myCells.push_back(cells);
 		}
+	}
+
+	void updateCellRow(const int row) {
+		myRow = row;
+		reset();
+	}
+
+	void updateCellColumn(const int column) {
+		myColumn = column;
+		reset();
 	}
 
 	void reset() {
@@ -60,6 +72,8 @@ public:
 
 private:
 	void intializeGrid() {
+		myCellWidth = myGridSize / myColumn;
+		myCellHeight = myGridSize / myRow;
 		const Cell::State cellState{ Cell::State::dead }; // initialize all cells as dead
 		for (int n{ 0 }; n < myRow; n++) {
 			std::vector<Cell> cells; // row of cells
