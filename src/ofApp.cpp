@@ -47,7 +47,7 @@ void ofApp::update(){
 		// do nothing
 	} else if (gameState == GameState::restart) {
 		cellGrid.reset();
-		currentGeneration = 0; // reset generation number
+		currentGeneration = 1; // reset generation number
 		gameState = GameState::setup;
 	} else if (gameState == GameState::setup) {
 		// do nothing

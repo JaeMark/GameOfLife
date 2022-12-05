@@ -45,7 +45,7 @@ private:
 
 	bool isUpdated = false;
 
-	int currentGeneration{ 0 };
+	int currentGeneration{ 1 };
 
 	ofxPanel gui;
 	ofxButton playButton;
