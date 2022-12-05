@@ -54,11 +54,11 @@ public:
 		intializeGrid();
 	}
 
-	void seed(const float probability) {
+	void seed(const float aliveProbability) {
 		for (auto& cells : myCells) {
 			for (auto& cell : cells) {
 				const float randomNum = ofRandom(0, 1);
-				if (randomNum < probability) {
+				if (randomNum < aliveProbability) {
 					cell.giveLife();
 				}
 			}

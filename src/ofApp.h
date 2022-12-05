@@ -26,6 +26,7 @@ class ofApp : public ofBaseApp{
 
 		void playButtonPressed();
 		void nextGenButtonPressed();
+		void seedButtonPressed();
 		void restartButtonPressed();
 		void rowSliderMoved(int& row);
 		void columnSliderMoved(int& column);
@@ -50,6 +51,7 @@ private:
 	ofxPanel gui;
 	ofxButton playButton;
 	ofxButton nextGenButton;
+	ofxButton seedButton;
 	ofxButton restartButton;
 	ofxIntSlider tickRate;
 	ofxIntSlider gridRow;
@@ -57,4 +59,6 @@ private:
 
 	bool isRowSliderMoved = false;
 	bool isColumnSliderMoved = false;
+
+	const float aliveProbability = 0.25;
 };
