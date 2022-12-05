@@ -7,11 +7,12 @@ public:
 	enum class State{dead, alive};
 private:
 	const Coordinate myCoordinate;
-	const int mySize;
+	int myWidth;
+	int myHeight;
 	State myState;
 public:
-	Cell(const Coordinate& coords, const int& size,const State& state)
-		: myCoordinate{ coords }, mySize{ size }, myState {
+	Cell(const Coordinate& coords, const int& width, const int& height, const State& state)
+		: myCoordinate{ coords }, myWidth{ width }, myHeight{ height }, myState {
 		state
 	} {}
 
@@ -21,7 +22,7 @@ public:
 		} else if (myState == State::dead) {
 			ofSetColor(255);
 		}
-		ofDrawRectangle(myCoordinate.x, myCoordinate.y, mySize, mySize);
+		ofDrawRectangle(myCoordinate.x, myCoordinate.y, myWidth, myHeight);
 	}
 
 	void changeState() {
