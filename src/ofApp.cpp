@@ -21,7 +21,14 @@ void ofApp::setup(){
 }
 
 void ofApp::playButtonPressed() {
-	gameState = GameState::play;
+	if(gameState == GameState::play) {
+		gameState = GameState::pause;
+		playButton.setName("Play");
+	} else {
+		gameState = GameState::play;
+		playButton.setName("Pause");
+	}
+
 }
 
 //--------------------------------------------------------------
