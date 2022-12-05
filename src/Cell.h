@@ -7,11 +7,11 @@ public:
 	enum class State{dead, alive};
 private:
 	const Coordinate myCoordinate;
-	int myWidth;
-	int myHeight;
+	double myWidth;
+	double myHeight;
 	State myState;
 public:
-	Cell(const Coordinate& coords, const int& width, const int& height, const State& state)
+	Cell(const Coordinate& coords, const double& width, const double& height, const State& state)
 		: myCoordinate{ coords }, myWidth{ width }, myHeight{ height }, myState {
 		state
 	} {}

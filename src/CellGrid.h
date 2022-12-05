@@ -7,8 +7,8 @@ class CellGrid {
 	int myRow;
 	int myColumn;
 	int myGridSize;
-	int myCellWidth{ 0 };
-	int myCellHeight{ 0 };
+	double myCellWidth{ 0 };
+	double myCellHeight{ 0 };
 	std::vector<std::vector<Cell>> myCells;
 	std::vector<std::vector<Cell>> myNextGenCells;
 public:
@@ -72,8 +72,8 @@ public:
 
 private:
 	void intializeGrid() {
-		myCellWidth = myGridSize / myColumn;
-		myCellHeight = myGridSize / myRow;
+		myCellWidth = static_cast<double>(myGridSize) / myColumn;
+		myCellHeight = static_cast<double>(myGridSize) / myRow;
 		const Cell::State cellState{ Cell::State::dead }; // initialize all cells as dead
 		for (int n{ 0 }; n < myRow; n++) {
 			std::vector<Cell> cells; // row of cells
