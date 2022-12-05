@@ -44,13 +44,12 @@ private:
 	enum class GameState{setup, play, pause, restart};
 	GameState gameState{ GameState::setup };
 
-	bool isUpdated = false;
-
 	int currentGeneration{ 1 };
 
 	ofxPanel gui;
 	ofxButton playButton;
 	ofxButton restartButton;
+	ofxButton nextGenButton;
 	ofxIntSlider tickRate;
 	ofxIntSlider gridRow;
 	ofxIntSlider gridColumn;
