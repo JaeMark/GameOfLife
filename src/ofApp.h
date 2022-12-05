@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Cell.h"
-#include "CellGrid.h"
 #include "ofMain.h"
+#include "ofxGui.h"
+
+#include "CellGrid.h"
 
 class ofApp : public ofBaseApp{
 
@@ -43,4 +44,6 @@ private:
 	bool isUpdated = false;
 
 	int currentGeneration{ 0 };
+
+	ofxPanel gui;
 };
