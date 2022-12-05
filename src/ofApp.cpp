@@ -42,6 +42,7 @@ void ofApp::playButtonPressed() {
 }
 
 void ofApp::nextGenButtonPressed() {
+	gameState = GameState::pause;
 	cellGrid.update();
 	++currentGeneration;
 }
