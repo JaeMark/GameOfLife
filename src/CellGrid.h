@@ -35,6 +35,12 @@ public:
 		}
 	}
 
+	void reset() {
+		myCells.clear();
+		myNextGenCells.clear();
+		intializeGrid();
+	}
+
 	void changeStateOfCellAt(const Coordinate coord) {
 		for (int n{ 0 }; n < myRow; n++) {
 			for (int m{ 0 }; m < myColumn; m++) {
