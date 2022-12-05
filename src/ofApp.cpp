@@ -12,8 +12,16 @@ void ofApp::setup(){
 	generation.setLineHeight(lineHeight);
 	generation.setLetterSpacing(letterSpacing);
 
+	// setup listeners
+	playButton.addListener(this, &ofApp::playButtonPressed);
+
 	// setup GUI
 	gui.setup("Game of Life", ofxPanelDefaultFilename, gameWindowSize, 0);
+	gui.add(playButton.setup("Play"));
+}
+
+void ofApp::playButtonPressed() {
+	gameState = GameState::play;
 }
 
 //--------------------------------------------------------------

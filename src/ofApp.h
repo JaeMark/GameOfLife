@@ -24,6 +24,8 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+		void playButtonPressed();
+
 private:
 	const int gameWindowSize{ 800 };
 	const int GUIOffset{ 200 };
@@ -46,4 +48,5 @@ private:
 	int currentGeneration{ 0 };
 
 	ofxPanel gui;
+	ofxButton playButton;
 };
