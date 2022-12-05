@@ -41,7 +41,7 @@ void ofApp::restartButtonPressed() {
 //--------------------------------------------------------------
 void ofApp::update(){
 	ofSetFrameRate(frameRate);
-	if (gameState == GameState::play && ofGetFrameNum() % frameRate == 0) {
+	if (gameState == GameState::play && ofGetFrameNum() % (frameRate/tickRate) == 0) {
 		cellGrid.update();
 		++currentGeneration;
 	} else if (gameState == GameState::pause) {
