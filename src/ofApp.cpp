@@ -62,7 +62,6 @@ void ofApp::columnSliderMoved(int& column) {
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	ofSetFrameRate(frameRate);
 	if (gameState == GameState::play && ofGetFrameNum() % (frameRate/tickRate) == 0) {
 		cellGrid.update();
 		++currentGeneration;
