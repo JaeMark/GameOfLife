@@ -4,10 +4,9 @@
 void ofApp::setup(){
 	ofSetWindowShape(gameWindowSize + GUIOffset, gameWindowSize);
 	ofSetRectMode(OF_RECTMODE_CENTER);
-
-	// setup fonts
-	ofTrueTypeFont::setGlobalDpi(72);
+	
 	// setup generation font
+	ofTrueTypeFont::setGlobalDpi(72);
 	generation.load("Fonts/LifeIsOkay.ttf", 20, true, true);
 	generation.setLineHeight(lineHeight);
 	generation.setLetterSpacing(letterSpacing);
@@ -31,6 +30,7 @@ void ofApp::setup(){
 	gui.add(gridColumn.setup("Grid Column", defaultGridColumn, 3, 50));
 }
 
+// Listeners
 void ofApp::playButtonPressed() {
 	if(gameState == GameState::play) {
 		gameState = GameState::pause;
@@ -40,26 +40,21 @@ void ofApp::playButtonPressed() {
 		playButton.setName("Pause");
 	}
 }
-
 void ofApp::nextGenButtonPressed() {
 	gameState = GameState::pause;
 	cellGrid.update();
 	++currentGeneration;
 }
-
 void ofApp::seedButtonPressed() {
-	if(gameState ==GameState::setup) cellGrid.seed(aliveProbability);
+	if(gameState == GameState::setup) cellGrid.seed(lifeProbability);
 }
-
 void ofApp::restartButtonPressed() {
 	gameState = GameState::restart;
 	playButton.setName("Play"); // reset play button name
 }
-
 void ofApp::rowSliderMoved(int& row) {
 	isRowSliderMoved = true;
 }
-
 void ofApp::columnSliderMoved(int& column) {
 	isColumnSliderMoved = true;
 }
@@ -70,14 +65,11 @@ void ofApp::update(){
 	if (gameState == GameState::play && ofGetFrameNum() % (frameRate/tickRate) == 0) {
 		cellGrid.update();
 		++currentGeneration;
-	} else if (gameState == GameState::pause) {
-		// do nothing
 	} else if (gameState == GameState::restart) {
 		cellGrid.reset();
 		currentGeneration = 1; // reset generation number
 		gameState = GameState::setup;
 	} else if (gameState == GameState::setup) {
-		// do nothing
 		if(isRowSliderMoved) {
 			cellGrid.updateGridRow(gridRow);
 			isRowSliderMoved = false;
@@ -104,15 +96,7 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-	if (key == 's') {
-		gameState = GameState::play;
-	}
-	if (key == 'r') {
-		gameState = GameState::restart;
-	}
-	if (key == 'p') {
-		gameState = GameState::pause;
-	}
+
 }
 
 //--------------------------------------------------------------

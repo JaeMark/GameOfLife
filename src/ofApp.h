@@ -32,21 +32,20 @@ class ofApp : public ofBaseApp{
 		void columnSliderMoved(int& column);
 
 private:
+	enum class GameState { setup, play, pause, restart };
+	GameState gameState{ GameState::setup };
+
 	const int gameWindowSize{ 800 };
 	const int GUIOffset{ 200 };
 	const int defaultGridRow{ 25 };
 	const int defaultGridColumn{ 25 };
 	const int frameRate{ 60 };
 	CellGrid cellGrid{ defaultGridRow, defaultGridColumn, gameWindowSize};
+	int currentGeneration{ 1 };
 
 	ofTrueTypeFont generation;
 	const float lineHeight{ 34.0 };
 	const float letterSpacing{ 1.035 };
-
-	enum class GameState{setup, play, pause, restart};
-	GameState gameState{ GameState::setup };
-
-	int currentGeneration{ 1 };
 
 	ofxPanel gui;
 	ofxButton playButton;
@@ -56,9 +55,8 @@ private:
 	ofxIntSlider tickRate;
 	ofxIntSlider gridRow;
 	ofxIntSlider gridColumn;
-
 	bool isRowSliderMoved = false;
 	bool isColumnSliderMoved = false;
 
-	const float aliveProbability = 0.25;
+	const float lifeProbability = 0.25;
 };
