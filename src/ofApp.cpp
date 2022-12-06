@@ -4,6 +4,7 @@
 void ofApp::setup(){
 	ofSetWindowShape(gameWindowSize + GUIOffset, gameWindowSize);
 	ofSetRectMode(OF_RECTMODE_CENTER);
+	ofSetFrameRate(frameRate);
 	
 	// setup generation font
 	ofTrueTypeFont::setGlobalDpi(72);
