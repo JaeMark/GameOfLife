@@ -182,7 +182,6 @@
   <ItemGroup>
     <ClCompile Include="src\Cell.cpp" />
     <ClCompile Include="src\CellGrid.cpp" />
-    <ClCompile Include="src\GameMode.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxBaseGui.cpp" />
@@ -200,7 +199,6 @@
     <ClInclude Include="src\Cell.h" />
     <ClInclude Include="src\CellGrid.h" />
     <ClInclude Include="src\Coordinate.h" />
-    <ClInclude Include="src\GameMode.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxButton.h" />

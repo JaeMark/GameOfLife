@@ -40,9 +40,6 @@
     <ClCompile Include="src\Cell.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameMode.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\CellGrid.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -105,9 +102,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Coordinate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameMode.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\CellGrid.h">
